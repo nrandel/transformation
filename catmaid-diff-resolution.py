@@ -1,14 +1,6 @@
 #%%
 # Import
 import pandas as pd
-import numpy as np
-
-#%%
-#Read file
-
-#temp = pd.read_csv("/Users/nadine/Documents/paper/single-larva/generated-data/cell-ID_100nodes_radius.csv")
-
-import pandas as pd
 
 # Define the function for coordinate transformation
 def convert_coordinates_s0_to_s4(xyz_s0, calibration_factor=12):
@@ -22,6 +14,12 @@ def convert_coordinates_s0_to_s4(xyz_s0, calibration_factor=12):
 
 # Read data from CSV into a DataFrame
 data = pd.read_csv("/Users/nadine/Documents/paper/single-larva/generated-data/cell-ID_100nodes_radius.csv")
+
+# Define the subset of columns you want to keep
+desired_columns = ['skeleton_id', ' x', ' y', ' z'] 
+
+# Create a new dataframe with only the desired columns
+data = data[desired_columns]
 
 # Step 1: Check Column Names
 print("Column Names:")
@@ -53,4 +51,7 @@ print("Transformed Data:")
 for index, row in data.iterrows():
     print(f"Skeleton ID: {row['skeleton_id']}, X: {row['x_s4']}, Y: {row['y_s4']}, Z: {row['z_s4']}")
 
+# Save the transformed data to a CSV file
+data.to_csv('/Users/nadine/Documents/paper/single-larva/generated-data/cell-ID_100nodes_radius_transformed_data.csv', index=False)
+print("Transformed data saved to 'transformed_data.csv'")
 # %%
