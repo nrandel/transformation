@@ -45,7 +45,7 @@ transformed_lsm_points = tps.transform(em_points)
 
 # Step 4: Save transformed LSM points to a new CSV file
 transformed_lsm_df = pd.DataFrame(transformed_lsm_points, columns=["x", "y", "z"])
-transformed_lsm_df.to_csv("/Users/nadine/Desktop/1099-nuc-seg/trasfformed_LM-points-brain-only_z-450.csv", index=False)
+transformed_lsm_df.to_csv("/Users/nadine/Desktop/1099-nuc-seg/transformed_LM-points-brain-only_z-450.csv", index=False)
 
 
 # %%
