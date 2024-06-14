@@ -133,6 +133,32 @@ for index, row in data.iterrows():
 data.to_csv('/Users/nadine/Documents/Zlatic_lab/1099-nuc-seg/S0-centroids_brain-only_z-450.csv', index=False)
 print("Transformed data saved to 'transformed_data.csv'")
 
+#%%
+# convert from nm to micrometer
+# Paths to the input CSV files
+
+# Read data
+df = pd.read_csv('/Users/nadine/Documents/Zlatic_lab/1099-nuc-seg/S4-S0-centroids_brain-only_z-450.csv')
+
+# Columns to convert from nm to um
+columns_to_convert = ['x_s0', 'y_s0', 'z_s0']
+
+
+# Perform conversion from nm to um for selected columns
+df[columns_to_convert] = df[columns_to_convert] / 1000.0
+
+
+# Save the modified DataFrame back to a CSV file
+output_csv_path = '/Users/nadine/Documents/Zlatic_lab/1099-nuc-seg/S4-S0-centroids_brain-only_z-450_um.csv'
+df.to_csv(output_csv_path, index=False)
+
+print(f"Converted data saved to {output_csv_path}")
+
+
+
+
+
+
 
 # %%
 # Concatenate csv files with corresponding rows
