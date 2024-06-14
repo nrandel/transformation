@@ -24,7 +24,7 @@ def convert_coordinates_s0_to_s4(xyz_s0, calibration_factor=12):
     return xyz_s4
 
 # Read data from CSV into a DataFrame
-data = pd.read_csv("/Users/nadine/Documents/Zlatic_lab/1099-nuc-seg/skeleton_coordinates_soma.csv")
+data = pd.read_csv("/Users/nadine/Documents/Zlatic_lab/1099-nuc-seg/S0-skeleton_coordinates_soma.csv")
 
 # Inspect column names to identify any discrepancies
 print("Column Names:")
@@ -135,3 +135,34 @@ print("Transformed data saved to 'transformed_data.csv'")
 
 
 # %%
+# Concatenate csv files with corresponding rows
+# Rename columns if necessary
+
+import pandas as pd
+
+# Paths to the input CSV files
+file1_path = '/Users/nadine/Documents/Zlatic_lab/1099-nuc-seg/S0-skeleton_coordinates_soma.csv'
+file2_path = '/Users/nadine/Documents/Zlatic_lab/1099-nuc-seg/S4-skeleton_coordinates_soma.csv'
+
+# Load the input CSV files
+df1 = pd.read_csv(file1_path)
+df2 = pd.read_csv(file2_path)
+
+# Rename headers using a dictionary
+rename_dict1 = {'x': 'x_S0', 'y': 'y_S0', 'z': 'z_S0'}
+rename_dict2 = {'x': 'x_S4', 'y': 'y_S4', 'z': 'z_S4'}
+
+df1.rename(columns=rename_dict1, inplace=True)
+df2.rename(columns=rename_dict2, inplace=True)
+
+# Concatenate the DataFrames along columns
+concatenated_df = pd.concat([df1, df2], axis=1)
+
+# Display the concatenated DataFrame
+print(concatenated_df)
+
+# Save the concatenated DataFrame to a new CSV file
+output_csv_path = '/path/to/concatenated_output.csv'
+concatenated_df.to_csv(output_csv_path, index=False)
+
+print(f"Concatenated output saved to {output_csv_path}")
